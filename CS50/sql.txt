@@ -1,0 +1,146 @@
+to begin running commmands
+sqlite3 database_name.db
+
+.schema
+will show each table and the columns within each table
+
+
+
+keywords/queries
+JOIN - combine tablkes based on a shared data
+
+additional SQL keywords
+BEGIN TRANSACTION
+COMMIT - commit to the transaction (updating the database)
+ROLLBACK - rollback to the previous state (undo)
+
+
+
+
+additional types
+BLOB - biunary large object (zeros and ones that dont fit in other types)
+INTEGER
+NUMERIC - formated numbers (like dates or times)
+REAL - same as a float
+TEXT - same as a string
+
+
+
+
+
+
+
+additional constraints
+NOT NULL - specified column can not be null (no missing data)
+UNIQUE - no repeat data in specified column (good for emails or SSN)
+PRIMARY KEY(   ) - input what column will be used as the unique id for the data
+
+
+
+
+
+
+
+Ex Commands:
+
+SELECT show_id FROM genres WHERE genre = 'Comedy';
+# will return id of all comedy shows
+
+SELECT COUNT(show_id) FROM genres WHERE genre = 'Comedy';
+# will return number of comedys
+
+SELECT title FROM shows WHERE id IN (SELECT show_id FROM genres WHERE genre = 'Comedy');
+# will return all the comedy show titles
+
+"Commancd (like one from above)" LIMIT 10;
+# Willl limit results to ten
+
+"Commancd (like one from above)" ODER BY title;
+# Will order results in aplha order
+
+SELECT * FROM people WHERE name = 'Steve Carell';
+# Returns all columns in the people table for Steve Carell
+
+SELECT title FROM shows WHERE id IN (SELECT show_id FROM stars WHERE person_id = (SELECT id FROM people WHERE name = 'Steve Carell'));
+# First finds Steve Carells ID from the people table ('=' becuase returns only one)
+# Uses his ID to find show ID for shows he starred in from the stars table
+# Finally returns multple show titles if the ID matches the show ID in the shows table ('IN' becuase returns multiple)
+
+SELECT title FROM people
+JOIN stars ON poeple.id = stars.person_id
+JOIN shows ON stars.show_id = shows.id
+where name = 'Steve Carell';
+# returns the same as previous command
+
+SELECT title FROM people, stars, shows
+WHERE people.id = stars.person_id
+AND stars.show_id = shows.id
+AND name = 'Steve Carell';
+# returns same a previous command
+
+SELECT * FROM shows JOIN genres ON shows.id = genres.show_id;
+# matches the id column from the shows table to the show_id column form the genres table
+# returns the data from both tables lined up based on above
+
+SELECT * FROM people WHERE name LIKE 'Steve C%';
+# return all names that have Steve C in them
+
+
+
+
+
+
+
+
+index - can be used to find data from a column faster
+
+SELECT * FROM shows WHERE title = 'The Office';
+
+CREATE INDEX title_index ON shows (title);
+# creates B-Tree called title_index from the shows table with searching optimized for titles
+# B-Tree looks like a binary treee but more efficient as it can have more than 2 children per node
+
+now running the search for 'The Office' will be much faster after creating the b-tree index
+
+
+
+
+# databses similar to likes on insta might get multiple requests at the same time
+
+rows = db.execute("SELECT likes FROM posts WHERE id = ?", id)
+likes = rows[0]["likes"]
+db.execute("UPDATE posts SET likes = / WHERE id = ?", likes + 1, id)
+# simple code to update the likes on a post
+# but if multiple people like at the same time they wont all go through
+
+# locking the code to stop multiple entries tryin to occurat once is a solution
+
+db.execute("BEGIN TRANSACTION")                                     ## "locks" the program, until this transaction is complete wait to do any others
+
+rows = db.execute("SELECT likes FROM posts WHERE id = ?", id)
+likes = rows[0]["likes"]
+db.execute("UPDATE posts SET likes = / WHERE id = ?", likes + 1, id)
+
+db.execute("COMMIT")                                                ## complete the code; in this case update the likes
+
+# wrapping the code in the BEGIN TRANSACTION and COMMIT makes the code atomic; it will either all be executed or not at all
+
+
+
+
+#SQL can be vulnerable to SQL injection attack
+#for example the following code is used for sigining in on a website
+
+rows = db.execute(f"SELECT * FROM users WHERE username = '{username}' AND password = '{password'}")
+if rows:
+.....................
+
+#including a single quote for user input can 'inject' into the code
+#if input is (-- means everything to the right is ignored)
+
+        buttons@maine.edu'--
+
+rows = db.execute(f"SELECT * FROM users WHERE username = 'buttons@maine.edu'--' AND password = '{password'}")
+
+#so the password requirment will be ignored
+#using ? as placeholders instead of formatted strings helps to prevent this

@@ -1,0 +1,114 @@
+TCP/IP - allows you to get data from point a to point b
+         data can take various paths, some more direct thant others
+
+IP - Internet Protocol - protocol that allows computers to talk to each other
+                         all computers have unique adresses (4 numbers, each from 0-255 32-bits in total allows for ~4 bilion computers on the internet wasy around this)
+                         IP adress used to send from one computer to another
+
+TCP - Transmission Control Protocol - protocols computers use to distiguish different services from each other
+                                      common services include HTTP represented by 80 and HTTPS (the secure version) represented by 443
+                                      these serve as port numbers that the data will be routed to when sent to an IP adress
+
+TCP/IP alows you do downoad an image or video in smaller chunks rather than all at once
+image would be sent with IP adress, the code to identify the service and the port it should be routed to, what part of the image out of the total to know how to reassemble it
+recieving computer will then reply to the sending computer that it recieved everhything ot is missing something
+
+
+
+DNS - Domain Name System - Converts domain names to IP adresses
+                           functions like a hash table with server IP adresses as keys and the domain names and values
+
+
+HTTP - Hyper Text Transfer Protocol - a service that runs on top of the internet, like email or zoom
+                                      used to build services that run on the internet
+
+
+https://www.example.com/ - ending with a / takes you to the root or default file
+                                         /file.html will take you to that file
+                                         /folder/ shows whats in the folder
+                                         /folfer/file.html whats in the file in the folder
+                            www.example.com is th fully qualified domanin name
+                            example.com is the domain name
+                            .com is the Top Level Domain (TLD)
+                            www is the host name
+                            https is the scheme/protocol that indicated what protocol should be used to acess the data
+
+
+keywords will be sent from computer to computer
+GET - get information
+POST - upload information
+
+GET / HTTP/1.1
+Host: www.example.com
+..................
+
+in command line:
+
+curl -I https://www.example.com/
+show the header values fom the website used
+
+http-server
+will create a server to run the file through your browser
+
+
+
+
+
+
+
+html - hyper text markup language - good creating aesthetics and data but not a programming function with no programming logic
+                                    has two features
+
+tags
+attributes
+
+
+
+css - Cascading Style Sheets - liek html is not a programming language but used for the aesthetics of webpages
+
+
+
+to use others frame works to make websites can use boosraps to essentially copy css that has been used for other websites
+
+
+
+
+Javascript
+
+CONDITIONS:
+
+if (x < y)
+{
+
+}
+else if
+{
+
+}
+else
+{
+
+}
+
+
+VARIABLES:
+
+let counter = 0;
+
+counter++;
+
+
+LOOPS:
+
+for (let i = 0; i < 3; i++)
+{
+
+}
+
+while (true)
+{
+
+}
+
+
+java can run 24/7 so changes can happen without reloading the page after codig a change in html or css

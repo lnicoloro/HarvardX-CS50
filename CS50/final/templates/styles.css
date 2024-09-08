@@ -1,0 +1,17 @@
+.small-box {
+    max-width: 200px;
+}
+
+
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+
+.container {
+    width: 200px;
+    height: 100px;
+}

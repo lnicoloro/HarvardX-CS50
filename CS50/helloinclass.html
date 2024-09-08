@@ -1,0 +1,40 @@
+<!DOCTYPE html> <!-- this header is included in every html file -->
+
+<html lang="en"> <!-- tags start with a < and close with a > html will contain all the html on the page. lang is an attrubute for the language that will be used -->
+
+    <head>        <!-- head tag conatins what will be in the url and the tabon the web browser -->
+
+        <script src="hello.js"></script>    <!-- java script in  a differetn file-->
+
+        <title>
+            hello, title
+        </title>
+
+    </head>
+
+    <body>          <!-- body tag contains what will be on the actual webpage -->
+
+        <form>       <!-- calls a javascript function called greet -->
+
+            <input autocomplete="off" autofocus id="name" placholder="name" type="text">
+            <button type="submit">Greet</button>
+
+        </form>>
+<!--
+        <script>
+
+            document.querySelector('form').addEventListener('submit', function(event) {
+                let name = document.querySelector('#name').value;
+                alert('helo, ' + name);
+                event.preventDefault();
+            });
+
+    </script>
+
+    java code in the same file as html
+-->
+    </body>
+</html>
+
+<!--html tag is a parent and head and body tags are its children
+    title is a child tag of head and grandchild of html -->

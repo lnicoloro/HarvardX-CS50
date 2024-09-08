@@ -1,0 +1,41 @@
+flask is a python frame-work / library (kinda like bootstrap was for css) used to help make web applications
+
+command line:
+flask run
+
+will need these files:
+app.py - where all the python code goes
+templates/ - folder where the templates go (html files)
+requirements.txt - allows you to use third party conventions
+static/ - where the static content goes (images, videos, javascript files, css files)
+
+
+
+
+using post will send to the server without showing in url
+get will use the url
+
+
+request.args only works for GET
+request.form only works for POST
+
+
+
+API - application programming interface - any finction from c python scratch stc are api's, somtimes have arguments or return values,
+                                        also web based ones to get data liek weather data or a book dastabase
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

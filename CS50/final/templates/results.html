@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% block head %}
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        label {
+            display: inline-block;
+            width:140px;
+            text-align: right;
+        }
+    </style>
+
+    <title>Results</title>
+
+{% endblock %}
+
+
+{% block body %}
+
+<nav class="navbar fixed-top navbar-expand-md navbar-light bg-light">
+    <a
+        href="/index"
+        class="navabr-brand mb-0 h1">
+        <img
+        class="d-inline-block align-top"
+        src="https://i.ebayimg.com/images/g/CVYAAOSwKJldDPSt/s-l1600.jpg"
+        alt="climber"
+        width="60" height="60"/>
+    </a>
+
+   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-labe;="toggle navigator">
+    <span class="navbar-toggler-icon"></span>
+   </button>
+
+    <div
+        class="collapse.navbar-collapse"
+        id="navbarNav">
+
+        <ul class="navbar-nav">
+
+            <li class="nav-item active">
+                <a href="/" class="nav-link">Home</a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Test Yourself</a>
+
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/test" >Enter Data</a></li>
+                        <li><a class="dropdown-item" href="/results" >Results</a></li>
+                    </ul>
+            </li>
+
+            <li class="nav-item active">
+                <a href="https://www.mountainproject.com/" class="nav-link">Mountain Project</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<br><br><br>
+
+<h1 class="text-center">Results</h1>
+<br>
+
+
+
+
+<table border="1" align="center">
+    <tr border="1">
+        <th>Test</th>
+
+        <th>Points</th>
+    </tr>
+    <tr>
+        <td>Max Pull-Up</td>
+        <td align="right"> {{ pull_points }}/10 </td>
+    </tr>
+    <tr>
+        <td>Max Crimp</td>
+        <td align="right"> {{ crimp_points }}/10 </td>
+    </tr>
+    <tr>
+        <td>Max Hang</td>
+        <td align="right"> {{ hang_points }}/10 </td>
+    </tr>
+    <tr>
+        <td>Core</td>
+        <td align="right"> {{ core_points }}/10 </td>
+    </tr>
+    <tr>
+        <td>Total</td>
+        <td align="right"> {{ total }}/40 </td>
+    </tr>
+</table>
+<br><br>
+<div align="center"> With {{ total }} out of 40 your climbing grade is {{ grade }}.</div>
+<br>
+<h2 align="center">{{ ao }}</h2>
+
+
+
+
+{% endblock %}

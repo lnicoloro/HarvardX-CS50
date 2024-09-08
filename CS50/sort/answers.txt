@@ -1,0 +1,20 @@
+sort1 uses: Bubble Sort
+
+How do you know?: best case is n and worst case is n^2
+
+sort2 uses: Merge Sort
+
+How do you know?: best case == worst case should be faster than select n log(n)
+
+sort3 uses: Selection Sort
+
+How do you know?: best case == worst case should be slower than merge n^2
+
+
+
+
+
+
+
+
+
