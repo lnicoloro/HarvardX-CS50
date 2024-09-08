@@ -1,0 +1,97 @@
+def main():
+    # get user input
+    weight = int(input("WEIGHT (LBS): "))
+    pull = int(input("PULL UP WEIGHT (LBS): "))
+    crimp = int(input("CRIMP WEIGHT (LBS): "))
+    hang = int(input("LONGEST HANG TIME (SEC): "))
+    core = input("CORE EXERCISE (KNEEUP, LSIT, LEVER): ").lower()
+    core_time = int(input("CORE EXERCISE TIME (SEC): "))
+
+    # list indexes are the points (output) while values are the times/weight ratios (input)
+    pull_list = [-1, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 1, 1.2]
+    crimp_list = [-1, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 1, 1.2]
+    hang_list = [-1, 30, 60, 90, 120, 150, 180, 210, 270, 300, 330]
+    knee_list = [-1, 10, 20, 30]
+    lsit_list = [-1, -1, -1, -1, 10, 15, 20]
+    lever_list = [-1, -1, -1, -1, -1, -1, -1, 5, 10, 20, 30]
+
+    pull_ratio = pull / weight
+    crimp_ratio = crimp / weight
+
+    # calculate points based of index in respective list
+    pull_points = pull_calc(pull_ratio, pull_list)
+    crimp_points = crimp_calc(crimp_ratio, crimp_list)
+    hang_points = hang_calc(hang, hang_list)
+    core_points = core_calc(core, core_time, knee_list, lsit_list, lever_list)
+
+    total = pull_points + crimp_points + hang_points + core_points
+
+    # list index correspomds to points (input) while values are the grades(output)
+    grade_list = ['error: you stink', '6a', '6a', '6b', '6b', '6c', '6c', '6c+', '6c+', '7a', '7a', '7a+', '7a+', '7b', '7b', '7b+', '7b+', '7c', '7c+', '7c+', '8a',
+            '8a', '8a+', '8a+', '8b', '8b', '8b+', '8b+', '8c', '8c', '8c+', '8c+', '9a', '9a', '9a+', '9a+', '9b', '9b', '9b+', '9c']
+
+    grade = grade_list[total]
+
+
+    # if they score above a 40 they gotta be adam ondra right?
+    if total >= 40:
+        ao = "You're Adam Ondra!"
+    else:
+        ao = ""
+
+    print(f"YOU CLIMB {grade}")
+    print(ao)
+
+
+
+
+def pull_calc(ratio, list):
+    for x in list:
+        if x <= ratio:
+            point = list.index(x)
+    return point
+
+
+def crimp_calc(ratio, list):
+    for x in list:
+        if x <= ratio:
+            point = list.index(x)
+    return point
+
+
+def hang_calc(time, list):
+    for x in list:
+        if x <= time:
+            point = list.index(x)
+    return point
+
+
+def core_calc(type, time, list1, list2, list3):
+    if type == "knee":
+        for x in list1:
+            if x <= time:
+                point = list1.index(x)
+        return point
+
+    elif type == "sit":
+        for x in list2:
+            if x <= time:
+                point = list2.index(x)
+        return point
+
+    elif type == "lever":
+        for x in list3:
+            if x <= time:
+                point = list3.index(x)
+        return point
+
+
+def find_weakness(list):
+    min = list[0]
+    for x in range(len(list)):
+        if list[x] <= list[0]:
+            min = list[x]
+    return min
+
+if __name__ == "__main__":
+    main()

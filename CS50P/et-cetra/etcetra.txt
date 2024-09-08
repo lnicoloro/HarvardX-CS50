@@ -1,0 +1,1 @@
+set - a data type like a list that does not contain duplicate values
